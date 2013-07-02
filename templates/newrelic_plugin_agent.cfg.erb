@@ -1,5 +1,7 @@
 %YAML 1.2
 ---
+#File edited by Chef
+
 Application:
   license_key: <%= @license_key %>
   poll_interval: <%= @poll_interval %>
@@ -79,16 +81,16 @@ Application:
 <% unless @mongodb.nil? -%>
 	mongodb:
 		name: <%= @hostname %>
-		host: <%= @mongodb[:host] || 'localhost' %>
-		<% if @mongodb.has_key?(:username) && @mongodb[:username] -%>
-		username: <%= @mongodb[:username] %>
+		host: <%= @mongodb["host"] || 'localhost' %>
+		<% if @mongodb.has_key?("username") && @mongodb["username"] -%>
+		username: <%= @mongodb["username"] %>
 		<% end -%>
-		<% if @mongodb.has_key?(:username) && @mongodb[:username] -%>
-		password: <%= @mongodb[:username] %>
+		<% if @mongodb.has_key?("username") && @mongodb["username"] -%>
+		password: <%= @mongodb["username"] %>
 		<% end -%>
-		port: <%= @mongodb[:port] || '27017' %>
+		port: <%= @mongodb["port"] || '27017' %>
 		databases:
-		<% @mongodb[:databases].each do |db| -%>
+		<% @mongodb["databases"].each do |db| -%>
 		- <%= db %>
 		<% end -%>
 <% end -%>
@@ -96,18 +98,18 @@ Application:
 <% unless @nginx.nil? -%>
 	nginx:
 		name: <%= @hostname %>
-		host: <%= @nginx[:host] || 'localhost' %>
-		port: <%= @nginx[:port] || '80' %>
-		path: <%= @nginx[:path] || '/nginx_stub_status' %>
+		host: <%= @nginx["host"] || 'localhost' %>
+		port: <%= @nginx["port"] || '80' %>
+		path: <%= @nginx["path"] || '/nginx_stub_status' %>
 <% end -%>
 
 <% unless @postgresql.nil? -%>
 	postgresql:
 		name: <%= @hostname %>
-		host: <%= @postgresql[:host] || 'localhost' %>
-		port: <%= @postgresql[:port] || '5432' %>
-		user: <%= @postgresql[:user] || 'postgres' %>
-		dbname: <%= @postgresql[:dbname] || 'postgres' %>
+		host: <%= @postgresql["host"] || 'localhost' %>
+		port: <%= @postgresql["port"] || '5432' %>
+		user: <%= @postgresql["user"] || 'postgres' %>
+		dbname: <%= @postgresql["dbname"] || 'postgres' %>
 <% end -%>
 
 
