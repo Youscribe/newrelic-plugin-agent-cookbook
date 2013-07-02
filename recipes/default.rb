@@ -27,10 +27,19 @@ directory node["newrelic"]["log_dir"] do
   mode  '700'
 end
 
+directory node["newrelic"]["config_dir"] do
+  owner node["newrelic"]["user"]
+  group node["newrelic"]["group"]
+  mode  '700'
+end
+
+
 python_pip "newrelic-plugin-agent"
 
 template node["newrelic"]["config_file"] do
 	source "newrelic_plugin_agent.cfg.erb"
+	owner node["newrelic"]["user"]
+	group node["newrelic"]["group"]
 	mode "0600"
 	variables({
 		:hostname => node["hostname"],
