@@ -32,7 +32,7 @@ python_pip "newrelic-plugin-agent"
 template node["newrelic"]["config_file"] do
 	source "newrelic_plugin_agent.cfg.erb"
 	mode "0600"
-	variables (
+	variables({
 		:hostname => node["hostname"],
 		:license_key => node["newrelic"]["license_key"],
 		:poll_interval => node["newrelic"]["poll_interval"],
@@ -43,5 +43,5 @@ template node["newrelic"]["config_file"] do
 		:nginx => node["newrelic"]["nginx"],
 		:postgresql => node["newrelic"]["postgresql"],
 		:redis => node["newrelic"]["redis"]
-	)
+	})
 end
